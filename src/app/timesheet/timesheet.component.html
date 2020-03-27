@@ -1,0 +1,65 @@
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+
+  <!-- StopWatch Div starts -->
+  <div class="container-fluid maindiv">
+    <div class="container">
+
+      <form style="margin-top: 50px;" class="form-inline">
+
+        <div class="form-group ">
+          <input type="text" class="form-control mr-2 w-100"
+            placeholder="What Are You Working On?" size="50" required>
+           
+        </div>
+        <div>
+
+        </div>
+        <!-- Project Button -->
+        <div class="btn text-primary " style="font-size: 20px;">
+          <i class="fa fa-plus-circle"></i>
+          Project
+        </div>
+
+        <!-- Dotted Line -->
+        <div class="v1 mr-3 ml-3"></div>
+
+
+        <!-- Quote for Motivation -->
+        <small  *ngIf="!buttona" class="form-text text-muted mr-3 ml-3">Your Time will be
+          Recorded.</small>
+        <small *ngIf="buttona" class="form-text text-muted mr-3 ml-3">Code never lies Comments
+          do.</small>
+        <!-- Quote for Motivation Ends -->
+
+
+
+        <div class="v1 mr-3 ml-3"></div>
+        <!-- STOPWATCH START-->
+        <div style="font-size:25px; margin-left: 10px;">{{timeLefthh}}:{{timeLeftmm}}:{{timeLeft}}</div>
+        <div *ngIf=buttona>
+          <button class="btn btn-primary ml-2" (click)=startTimer() [disabled]=!buttona> START </button>
+        </div>
+        <div *ngIf=!buttona>
+          <button class="btn btn-danger ml-2" (click)=pauseTimer() [disabled]=buttona> STOP </button>
+        </div>
+        <!-- STOPWATCH END-->
+        <!-- Dotted Line -->
+        <div class="v1"></div>
+      </form>
+    </div>
+  </div>
+  <!-- StopWatch Div Ends -->
+  <div>
+    You Worked For: {{c}}:{{b}}:{{a}} Hours
+  </div>
+  <app-showtimesheet></app-showtimesheet>
+</body>
+
+</html>

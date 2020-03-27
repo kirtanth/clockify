@@ -1,0 +1,12 @@
+.v1{
+    /* border-left: 3px solid rgb(0, 0, 0); */
+    border-left: 1px dashed #8c8b8b;
+  height: 30px;
+}
+.maindiv{
+    background-color: #bfd8d2;
+}
+.bg-darkl{
+  background-color: #bfd8d2;
+
+}
