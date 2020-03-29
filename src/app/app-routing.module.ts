@@ -2,6 +2,7 @@ import { TimesheetComponent } from './timesheet/timesheet.component';
 import { NgModule, Component } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import {LoginComponent} from './login/login.component'
+import { RegisterComponent } from './register/register.component';
 
 
 const routes: Routes = [
@@ -10,6 +11,9 @@ const routes: Routes = [
   },
   {
     path: 'timesheet' ,component:TimesheetComponent
+  },
+  {
+    path: 'register' ,component:RegisterComponent
   }
 ];
 

@@ -56,10 +56,8 @@
     </div>
   </div>
   <!-- StopWatch Div Ends -->
-  <div>
-    You Worked For: {{c}}:{{b}}:{{a}} Hours
-  </div>
-  <app-showtimesheet></app-showtimesheet>
+{{thours}}
+  <app-showtimesheet [wtime]="totaltime"></app-showtimesheet>
 </body>
 
 </html>

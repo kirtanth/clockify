@@ -1,23 +1,31 @@
-<html>
-    <head>
+<div class="container">
+<div class="row" style="margin-top:40px; padding:20px; margin-left: 300px;margin-right: 300px; background-color:#eff0f2;border-radius:15px;
+-webkit-box-shadow: 0px 0px 5px 2px rgba(0,0,0,0.2);
+-moz-box-shadow: 0px 0px 5px 2px rgba(0,0,0,0.2);
+box-shadow: 0px 0px 5px 2px rgba(0,0,0,0.2);">
+  <div class="col-sm-12" style="text-align:center;">
+    Login
+  </div>
 
-    </head>
-    <body>
-        <div class="container">
-        <form>
-            <div class="form-group">
-              <label for="email">Email address:</label>
-              <input type="email" class="form-control w-25" id="email">
-            </div>
-            <div class="form-group">
-              <label for="pwd">Password:</label>
-              <input type="password" class="form-control w-25" id="pwd">
-            </div>
-            <div class="checkbox">
-              <label><input type="checkbox"> Remember me</label>
-            </div>
-            <button type="submit" class="btn btn-default">Submit</button>
-          </form>
-        </div>
-    </body>
-</html>
+  <div class="col-sm-12">
+    <form [formGroup]="loginForm">
+      <div class="form-group">
+        <label for="exampleInputEmail1">Email address</label>
+        <input formControlName="email" type="email" class="form-control w-75" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+        <small id="emailHelp" class="form-text text-muted"></small>
+      </div>
+      <div class="form-group">
+        <label for="passwordInput">Password</label>
+        <input formControlName="password"  type="password" class="form-control w-75" id="passwordInput" aria-describedby="passHelp" placeholder="password">
+        <small id="passHelp" class="form-text text-muted"></small>
+      </div>
+
+      <div class="form-group" style="text-align:center;">
+          <button type="button" class="btn btn-dark mr-1" (click)="login()" >Log in</button>
+          <button type="button" class="btn btn-secondary" (click)="moveToRegister()" >Register</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+</div>

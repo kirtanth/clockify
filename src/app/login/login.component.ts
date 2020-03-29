@@ -1,9 +1,6 @@
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
-
-export interface DialogData {
-  animal: string;
-  name: string;
-}
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -12,9 +9,25 @@ export interface DialogData {
 })
 export class LoginComponent implements OnInit {
 
-  constructor() { }
+  loginForm :FormGroup = new FormGroup({
+    email: new FormControl(null,Validators.required),
+    password: new FormControl(null,Validators.required)
+  })
+  constructor(private _router:Router) { }
 
   ngOnInit(): void {
+  }
+
+  login(){
+    if(!this.loginForm.valid){
+      console.log('Login Details invalid');
+      return;
+    }
+    console.log(JSON.stringify(this.loginForm.value))
+  }
+
+  moveToRegister(){
+    this._router.navigate(['/register'])
   }
 
 }

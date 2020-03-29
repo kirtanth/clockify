@@ -3,20 +3,22 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatButtonModule} from '@angular/material/button';
 import { LoginComponent } from './login/login.component';
 import { TimesheetComponent } from './timesheet/timesheet.component';
-import { ShowtimesheetComponent } from './showtimesheet/showtimesheet.component';
+import { ShowtimesheetComponent } from './timesheet/showtimesheet/showtimesheet.component';
+import { RegisterComponent } from './register/register.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     TimesheetComponent,
-    ShowtimesheetComponent
+    ShowtimesheetComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
@@ -24,6 +26,8 @@ import { ShowtimesheetComponent } from './showtimesheet/showtimesheet.component'
     FormsModule,
     BrowserAnimationsModule,
     MatButtonModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
