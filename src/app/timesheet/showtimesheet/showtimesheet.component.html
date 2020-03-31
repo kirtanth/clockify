@@ -7,21 +7,13 @@
 <body>
     <div class="container mt-5">
         <div class="row">
-            <div class="card mr-2" style="width: 350px;">
+            <div class="card mr-2 mb-2" style="width: 350px;" *ngFor="let sh of showmeworkArray; let i=index">
                 <div class="card-header">Project Name</div>
-                <div class="card-body">Total Work In HOURS : {{wtime}} </div>
+                <div class="card-body"  >
+                    <label name="timeArray"> Total Work In HOURS :{{timeArray[i]}} </label> </div>
                 <div class="card-footer">Total Working Hours : 08:00:00</div>
             </div>
-            <div class="card mr-2" style="width: 350px;">
-                <div class="card-header">Project Name</div>
-                <div class="card-body">Total Work In HOURS : {{wtime}} </div>
-                <div class="card-footer">Total Working Hours : 08:00:00</div>
-            </div>
-            <div class="card mr-2   " style="width: 350px;">
-                <div class="card-header">Project Name</div>
-                <div class="card-body">Total Work In HOURS : {{wtime}} </div>
-                <div class="card-footer">Total Working Hours : 08:00:00</div>
-            </div>
+            
         </div>
     </div>
 </body>

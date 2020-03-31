@@ -5,12 +5,17 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {MatDialogModule} from '@angular/material/dialog';
-import {MatButtonModule} from '@angular/material/button';
+import { MatButtonModule } from '@angular/material/button';
 import { LoginComponent } from './login/login.component';
 import { TimesheetComponent } from './timesheet/timesheet.component';
 import { ShowtimesheetComponent } from './timesheet/showtimesheet/showtimesheet.component';
 import { RegisterComponent } from './register/register.component';
+import { UserService } from './user.service'
+import { HttpClientModule } from '@angular/common/http';
+import { NavbarComponent } from './navbar/navbar.component';
+import { Navbar2Component } from './navbar2/navbar2.component';
+import { Showtime } from './showtime.model';
+import {MatSelectModule} from '@angular/material/select';
 
 @NgModule({
   declarations: [
@@ -18,7 +23,10 @@ import { RegisterComponent } from './register/register.component';
     LoginComponent,
     TimesheetComponent,
     ShowtimesheetComponent,
-    RegisterComponent
+    RegisterComponent,
+    NavbarComponent,
+    Navbar2Component,
+
   ],
   imports: [
     BrowserModule,
@@ -27,9 +35,13 @@ import { RegisterComponent } from './register/register.component';
     BrowserAnimationsModule,
     MatButtonModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule,
+    MatSelectModule
+
   ],
-  providers: [],
+ 
+  providers: [UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

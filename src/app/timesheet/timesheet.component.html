@@ -6,25 +6,35 @@
 </head>
 
 <body>
-
+  <app-navbar></app-navbar>
   <!-- StopWatch Div starts -->
   <div class="container-fluid maindiv">
     <div class="container">
 
-      <form style="margin-top: 50px;" class="form-inline">
-
+      <form style="margin-top: 50px;" [formGroup]="projectForm" class="form-inline">
+        <!-- Project Name Goes here -->
         <div class="form-group ">
-          <input type="text" class="form-control mr-2 w-100"
+          <input formControlName="projectName" type="text" class="form-control mr-2 w-100"
             placeholder="What Are You Working On?" size="50" required>
            
         </div>
         <div>
 
         </div>
-        <!-- Project Button -->
-        <div class="btn text-primary " style="font-size: 20px;">
+        <!------------------------------- Project Button -------------------------------->
+        <!-- <div class="btn text-primary " style="font-size: 20px;" *ngIf="!cs" (click)="createSelect()" >
           <i class="fa fa-plus-circle"></i>
           Project
+        </div>-->
+        <div> 
+          <mat-form-field >
+            <mat-label><i class="fa fa-plus-circle"></i> Project </mat-label>
+            <mat-select value="selected">
+              <mat-optgroup label="--Select Project--"></mat-optgroup>
+              <mat-option [value]="p.value"  *ngFor="let p of projects">{{p.viewValue}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+          
         </div>
 
         <!-- Dotted Line -->
@@ -32,10 +42,14 @@
 
 
         <!-- Quote for Motivation -->
+
+
         <small  *ngIf="!buttona" class="form-text text-muted mr-3 ml-3">Your Time will be
           Recorded.</small>
         <small *ngIf="buttona" class="form-text text-muted mr-3 ml-3">Code never lies Comments
           do.</small>
+
+
         <!-- Quote for Motivation Ends -->
 
 
@@ -47,17 +61,24 @@
           <button class="btn btn-primary ml-2" (click)=startTimer() [disabled]=!buttona> START </button>
         </div>
         <div *ngIf=!buttona>
-          <button class="btn btn-danger ml-2" (click)=pauseTimer() [disabled]=buttona> STOP </button>
+          <button class="btn btn-danger ml-2" (click)=pauseTimer() (focus)="appchild.addWork()" [disabled]=buttona> STOP </button>
         </div>
+
+        <!-- User Symbol And Username -->
+        <div class="ml-auto text-body" style="font-size: 40px;">
+          <i class="fa fa-user" aria-hidden="true"></i> 
+          {{username}}
+        </div>
+
+
         <!-- STOPWATCH END-->
         <!-- Dotted Line -->
-        <div class="v1"></div>
       </form>
     </div>
   </div>
   <!-- StopWatch Div Ends -->
 {{thours}}
-  <app-showtimesheet [wtime]="totaltime"></app-showtimesheet>
+  <app-showtimesheet [wtime]="totaltime" [etime]="endtime" #appchild></app-showtimesheet>
 </body>
 
 </html>
