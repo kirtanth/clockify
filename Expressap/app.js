@@ -3,13 +3,18 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+//CORS
 var cors = require('cors');
+//MONGOOSE
 var mongoose = require('mongoose');
+//PASSPORT
 var passport = require('passport');
+//SESSION
 var session = require('express-session');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
+var taskRouter = require('./routes/tasks')
 
 var app = express();
 const db_url = 'mongodb://127.0.0.1:27017/clockify'
@@ -19,7 +24,7 @@ app.use(cors({
   credentials: true
 }))
 
-
+//Connect Database
 mongoose.connect(db_url, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
@@ -29,8 +34,9 @@ mongoose.connect(db_url, {
   if (error) {
     console.log('db Connect fail')
   }
-  console.log('DataBase coonected.... :)')
+  console.log('DataBase: Clockify Conected.... :)')
 })
+
 
 const MongoStore = require('connect-mongo')(session);
 
@@ -65,6 +71,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+app.use('/task', taskRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

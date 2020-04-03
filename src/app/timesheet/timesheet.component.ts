@@ -1,3 +1,4 @@
+import { TaskService } from './../task.service';
 import { Router } from '@angular/router';
 import { UserService } from './../user.service';
 import { Component, OnInit, EventEmitter, Output, NgModule, Injectable } from '@angular/core';
@@ -43,7 +44,7 @@ export class TimesheetComponent implements OnInit {
   username: String = '';
 
   //Constructor-----------------------------------------------------------
-  constructor(private _user: UserService, private _router: Router) {
+  constructor(private _user: UserService, private _router: Router, private _taskService:TaskService) {
     this._user.user()
       .subscribe(
         data => this.addName(data),
@@ -116,11 +117,13 @@ export class TimesheetComponent implements OnInit {
     clearInterval(this.interval);
     this.time = 'You Worked For :' + this.c + ':' + this.b + ':' + this.a + ' Hours'
     this.projectForm.patchValue({
-      p_startTime: this.starttime,
-      p_endTime: this.endtime,
-      P_sessionTime:this.totaltime
+      pStartTime: this.starttime,
+      pEndTime: this.endtime,
+      PSessionTime:this.totaltime
     });
-    this.p_form()
+  
+    this.pForm()
+    this.addTask()
 
   }
   // STOP Timer End---------------------------------------------------------------
@@ -129,7 +132,7 @@ export class TimesheetComponent implements OnInit {
 
   // PROJECT DROPDOWN------------------------------------------
   projects: project[] = [
-    { value: 'project-0', viewValue: 'Project-1' },
+    { value: 'project-1', viewValue: 'Project-1' },
     { value: 'Project-2', viewValue: 'Project-2' },
     { value: 'Project-3', viewValue: 'Project-3' }
   ];
@@ -138,18 +141,25 @@ export class TimesheetComponent implements OnInit {
 
   projectForm: FormGroup = new FormGroup({
 
-    p_name: new FormControl(null),
-    p_title: new FormControl(null, Validators.required),
-    p_startTime: new FormControl(),
-    p_endTime: new FormControl(this.endtime),
-    P_sessionTime: new FormControl(this.totaltime)
+    pName: new FormControl(null),
+    pTitle: new FormControl(null, Validators.required),
+    pStartTime: new FormControl(),
+    pEndTime: new FormControl(this.endtime),
+    PSessionTime: new FormControl(this.totaltime)
   })
 
+  addTask(){
+    this._taskService.task(JSON.stringify(this.projectForm.value))
+    .subscribe(
+      data=> console.log(data),
+      error=> console.log(error)
+    )
+  }
 
-
-
-  p_form() {
-    console.log(this.projectForm.value)
+  pForm() {
+    
+    console.log(JSON.stringify(this.projectForm.value))
+   
   }
 
 

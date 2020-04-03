@@ -15,7 +15,7 @@
         <!-- <form style="margin-top: 50px;" #pForm='ngForm' (ngSubmit)="Register(pForm)"  class="form-inline"> -->
         <!-- Project Name Goes here -->
         <div class="form-group ">
-          <input type="text" formControlName="p_title" class="form-control mr-2 w-100" name="p_title"
+          <input type="text" formControlName="pTitle" class="form-control mr-2 w-100" name="pTitle"
             placeholder="What Are You Working On?" size="50" required>
 
         </div>
@@ -28,9 +28,9 @@
         <div>
           <mat-form-field>
             <mat-label><i class="fa fa-plus-circle"></i> Project </mat-label>
-            <mat-select value="selected" name="p_name" formControlName="p_name" >
+            <mat-select value="selected" name="pName" formControlName="pName" >
               <mat-optgroup label="--Select Project--"></mat-optgroup>
-              <mat-option [value]="p.value" *ngFor="let p of projects">{{p.viewValue}}</mat-option>
+              <mat-option [value]="p.value" *ngFor="let p of projects">{{p.value}}</mat-option>
             </mat-select>
           </mat-form-field>
         </div>

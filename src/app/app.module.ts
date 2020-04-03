@@ -1,3 +1,4 @@
+import { TaskService } from './task.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
@@ -41,7 +42,7 @@ import {MatSelectModule} from '@angular/material/select';
 
   ],
  
-  providers: [UserService],
+  providers: [UserService,TaskService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
