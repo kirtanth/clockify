@@ -8,10 +8,12 @@ var Schema = mongoose.Schema;
 var schema = new Schema({
     pName: { type: String },
     pTitle: { type: String },
+    pEmail:{ type:String},
     pStartTime: { type: String },
     pEndTime: { type: String },
-    PSessionTime: { type: String ,
-    default: moment(this.pEndTime,'HH:mm:ss').diff(moment(this.pStartTime,'HH:mm:ss'))
+    PSessionTime: {
+        type: String,
+        default: moment(this.pEndTime, 'HH:mm:ss').diff(moment(this.pStartTime, 'HH:mm:ss'))
     }
 });
 

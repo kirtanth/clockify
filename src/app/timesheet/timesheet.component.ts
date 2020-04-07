@@ -4,6 +4,8 @@ import { UserService } from './../user.service';
 import { Component, OnInit, EventEmitter, Output, NgModule, Injectable } from '@angular/core';
 import * as moment from 'moment';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { data } from '../data';
+import { error } from 'protractor';
 
 interface project {
   value: string;
@@ -22,7 +24,7 @@ interface project {
 export class TimesheetComponent implements OnInit {
 
 
-  //Initialization-------------------------------------
+  //-----------------------------------------------Initialization---Starts-------------------------------------
   timeLeft: number = 0;
   timeLeftmm: number = 0;
   timeLefthh: number = 0;
@@ -33,7 +35,7 @@ export class TimesheetComponent implements OnInit {
   time
   endtime
   totaltime
-  //Initialization----------------------------------
+  //-------------------------------------------Initialization-- Ends----------------------------------
 
 
   getwork() {
@@ -42,9 +44,12 @@ export class TimesheetComponent implements OnInit {
 
   //Taking Username
   username: String = '';
+  email:string='';
 
-  //Constructor-----------------------------------------------------------
+  //-----------------------------------------Constructor-----------------------------------------------------------
   constructor(private _user: UserService, private _router: Router, private _taskService:TaskService) {
+    
+    //subscribe user
     this._user.user()
       .subscribe(
         data => this.addName(data),
@@ -56,6 +61,7 @@ export class TimesheetComponent implements OnInit {
   //Adding Name
   addName(data) {
     this.username = data.username;
+    this.email = data.email
   }
 
   ngOnInit() {
@@ -117,6 +123,7 @@ export class TimesheetComponent implements OnInit {
     clearInterval(this.interval);
     this.time = 'You Worked For :' + this.c + ':' + this.b + ':' + this.a + ' Hours'
     this.projectForm.patchValue({
+      pEmail: this.email,
       pStartTime: this.starttime,
       pEndTime: this.endtime,
       PSessionTime:this.totaltime
@@ -124,6 +131,7 @@ export class TimesheetComponent implements OnInit {
   
     this.pForm()
     this.addTask()
+    this.tasks()
 
   }
   // STOP Timer End---------------------------------------------------------------
@@ -143,6 +151,7 @@ export class TimesheetComponent implements OnInit {
 
     pName: new FormControl(null),
     pTitle: new FormControl(null, Validators.required),
+    pEmail: new FormControl(),
     pStartTime: new FormControl(),
     pEndTime: new FormControl(this.endtime),
     PSessionTime: new FormControl(this.totaltime)
@@ -160,6 +169,15 @@ export class TimesheetComponent implements OnInit {
     
     console.log(JSON.stringify(this.projectForm.value))
    
+  }
+
+  //Fun for Subscribe Task
+  tasks(){
+    this._user.tasks(JSON.stringify(this.projectForm.value))
+    .subscribe(
+      data=> console.log(data),
+      error=>console.log(error)
+    )
   }
 
 

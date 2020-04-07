@@ -21,6 +21,14 @@ export class UserService {
     });
   }
 
+  tasks(body:any){
+    return this._http.put('http://127.0.0.1:3000/users/newTask',body,{
+      observe:'body',
+      withCredentials:true,
+      headers:new HttpHeaders().append('Content-Type','application/json')
+    });
+  }
+
   user(){
     return this._http.get('http://127.0.0.1:3000/users/user',{
       observe:'body',

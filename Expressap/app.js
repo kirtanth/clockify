@@ -44,12 +44,12 @@ const MongoStore = require('connect-mongo')(session);
 app.use(session({
   name: 'clockify.sid',
   resave: false,
-  saveUninitialized:false,
-  secret:'secret',
-  cookie:{
-    maxAge:36000000,
-    httpOnly:false,
-    secure:false
+  saveUninitialized: false,
+  secret: 'secret',
+  cookie: {
+    maxAge: 36000000,
+    httpOnly: false,
+    secure: false
   },
   store: new MongoStore({ mongooseConnection: mongoose.connection })
 }));

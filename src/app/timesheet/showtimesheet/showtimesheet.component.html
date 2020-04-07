@@ -8,17 +8,22 @@
 </head>
 
 <body>
-    <div class="container mt-5">
+    <div class="container pl-5 pt-5 pb-5 mt-5" >
         <div class="row">
-            <div class="card mr-2 mb-2" style="width: 350px;" *ngFor="let sh of showmeworkArray; let i=index">
-                <div class="card-header">Project Name</div>
-                <div class="card-body"  >
-                    <label name="timeArray"> Total Work In HOURS :{{timeArray[i]}} </label> </div>
-                <div class="card-footer">Total Working Hours : 08:00:00</div>
+            <div class="card mr-2 mb-2" style="width: 350px; background-color: white ;" *ngFor="let d of PSessionTime; let i=index">
+                <!-- <div *ngIf="userEmail==userTask.pEmail"> -->
+                    <div class="card-header" style="background-color: #e8a87c ;">{{d.pName}}</div>
+                    <div class="card-body">You Worked ON: {{d.pTitle}}</div>
+                    <div class="card-body"> Start Session Time :{{d.pStartTime}} </div>
+                    <div class="card-body"> End Session Time :{{d.pEndTime}} </div>
+                    <div class="card-footer" style="background-color: #e8a87c ;">Session Time :{{d.PSessionTime}}</div>
+                <!-- </div> -->
             </div>
-            
         </div>
     </div>
+    
+    
+
 </body>
 
 </html>
