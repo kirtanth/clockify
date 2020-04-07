@@ -1,24 +1,37 @@
-  <!-- Nav bar Start -->
-  <nav class="navbar navbar-expand-sm bg-darkl navbar-light">
+<!-- Nav bar Start -->
+<nav class="navbar navbar-expand-sm navbar-light" style="background-color: white;">
 
-    <ul class="navbar-nav  ">
-      <li class="nav-item">
-        <a class="navbar-brand" [routerLink]="['/timesheet']">Time Sheet</a>
-      </li>
-      <li class="nav-item font-weight-bold">
-        <a class="nav-link " [routerLink]="['/timesheet']">Home</a>
-      </li>
-      <li class="nav-item font-weight-bold  ">
-        <a class="nav-link" [routerLink]="['/timesheet']">Hours Worked</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#"></a>
-      </li>
-    </ul>
-    <div class="ml-auto" >
-      <button mat-raised-button color="warn" (click)="logout()">LOGOUT</button>
+  <ul class="navbar-nav  ">
+    <li class="nav-item">
+      <a class="navbar-brand" [routerLink]="['/timesheet']">Time Sheet</a>
+    </li>
+    <li class="nav-item font-weight-bold">
+      <a class="nav-link " [routerLink]="['/timesheet']">Home</a>
+    </li>
+    <li class="nav-item font-weight-bold  ">
+      <a class="nav-link" [routerLink]="['/timesheet']">Hours Worked</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#"></a>
+    </li>
+  </ul>
+  <!-- -----------------------------USERNAME DROPDOWN-------START---------------------------------- -->
+  <div  style="margin-left: 1000px;">
+    <div class="btn-group mr-3">
+      <div class="btn-group" ngbDropdown role="group" aria-label="Button group with nested dropdown">
+        <button class="btn dropdown-toggle-split" style="background-color:white; " ngbDropdownToggle>
+          <i style="font-size: 30px; color: black;" class="fa fa-user mr-2"> {{username|uppercase}}</i>
+        </button>
+        <div class="dropdown-menu " ngbDropdownMenu>
+          <button ngbDropdownItem> <b> username :</b> {{username}}</button>
+          <button ngbDropdownItem>{{email}}</button><hr>
+          <div class="text-center"><button mat-raised-button color="warn" (click)="logout()">LOGOUT</button></div>
+        </div>
+      </div>
     </div>
-  </nav>
+  </div>
+  <!-- -----------------------------USERNAME DROPDOWN-------END---------------------------------- -->
 
-  <!-- Nav bar End -->
- 
+</nav>
+
+<!-- Nav bar End -->

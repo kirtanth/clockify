@@ -22,8 +22,4 @@ export interface DialogData {
 export class AppComponent {
   constructor(private _user:UserService , private _router: Router){}
 
- 
-
-  
-
 }

@@ -17,6 +17,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { Navbar2Component } from './navbar2/navbar2.component';
 import { Showtime } from './showtime.model';
 import {MatSelectModule} from '@angular/material/select';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap'
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import {MatSelectModule} from '@angular/material/select';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    MatSelectModule
+    MatSelectModule,
+    NgbModule
 
   ],
  

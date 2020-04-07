@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 
-<body>
+<body style="background-color: rgb(242, 246, 248) ">
   <app-navbar></app-navbar>
   <!-- StopWatch Div starts -->
   <div class="container-fluid maindiv">
@@ -55,13 +55,6 @@
         <div *ngIf=!buttona>
           <button class="btn btn-danger ml-2" (click)="pauseTimer();" id="Register" (focus)="appchild.addWork()"
             [disabled]=buttona> STOP </button>
-        </div>
-
-
-        <!-- User Symbol And Username -->
-        <div class="ml-auto text-body" style="font-size: 40px;">
-          <i class="fa fa-user" aria-hidden="true"></i>
-          {{username}}
         </div>
 
 

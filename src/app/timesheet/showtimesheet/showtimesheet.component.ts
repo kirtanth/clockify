@@ -1,3 +1,4 @@
+import { UserService } from './../../user.service';
 import { Showtime } from './../../showtime.model';
 import { Component, OnInit, Input } from '@angular/core';
 import { TimesheetComponent } from '../timesheet.component';
@@ -25,16 +26,31 @@ export class ShowtimesheetComponent implements OnInit {
   showWork = new Showtime()
   showmeworkArray = [];
   timeArray = [];
-
-  constructor(private timesheet: TimesheetComponent, private _taskService:TaskService) {
+//------------------------------------- Constructor START---------------------------------------------------//
+  constructor(private timesheet: TimesheetComponent, private _taskService:TaskService, private _user:UserService) {
 
     this._taskService.showTask()
     .subscribe(
       data=>this.taskInfo(data),
       error=>console.log(error)
     )
-    //this.wtime
+    this._user.showTasks()
+    .subscribe(
+      data=>this.getTasks(data),
+      error=>console.log(error)
+    )
    }
+
+//------------------------------------- Constructor ENDS---------------------------------------------------//
+
+
+   getTask
+   getTasks(data){
+    this.getTask = data
+    JSON.stringify(this.getTask)
+    console.log(data)
+   }
+
    PSessionTime
    taskInfo(data){
     this.PSessionTime = data
