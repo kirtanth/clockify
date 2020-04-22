@@ -25,9 +25,9 @@ export class TimesheetComponent implements OnInit {
 
 
   //-----------------------------------------------Initialization---Starts-------------------------------------
-  timeLeft: number = 0;
-  timeLeftmm: number = 0;
-  timeLefthh: number = 0;
+  timeLeft: any = 0;
+  timeLeftmm: any = 0;
+  timeLefthh: any = 0;
   a: number; b: number; c: number;
   interval;
   buttona = true;
@@ -35,8 +35,8 @@ export class TimesheetComponent implements OnInit {
   time
   endtime
   totaltime
-  //-------------------------------------------Initialization-- Ends----------------------------------
 
+  //-------------------------------------------Initialization-- Ends----------------------------------
 
   getwork() {
 
@@ -44,19 +44,21 @@ export class TimesheetComponent implements OnInit {
 
   //Taking Username
   username: String = '';
-  email:string='';
+  email: string = '';
 
   //-----------------------------------------Constructor-----------------------------------------------------------
-  constructor(private _user: UserService, private _router: Router, private _taskService:TaskService) {
-    
+  constructor(private _user: UserService, private _router: Router, private _taskService: TaskService) {
+
     //subscribe user
     this._user.user()
       .subscribe(
         data => this.addName(data),
         error => this._router.navigate(['/login'])
       )
+
   }
 
+  //-----------------------------------------Constructor--------ENDS-----------------------------------------//
 
   //Adding Name
   addName(data) {
@@ -69,31 +71,55 @@ export class TimesheetComponent implements OnInit {
 
   }
 
+  sZero() {
+    if (this.timeLeft < 10) {
+      this.timeLeft = "0" + this.timeLeft
+    }
 
+  }
+  mZero() {
+    if (this.timeLeftmm < 10) {
+      this.timeLeftmm = "0" + this.timeLeftmm
+    }
+  }
+  hZero() {
+    if (this.timeLefthh < 10) {
+      this.timeLefthh = "0" + this.timeLefthh
+    }
+
+  }
 
   @Output() RecordTime = new EventEmitter()
 
+
+
   startTimer() {
+
+
     this.buttona = false;
     //Getting user start time
     this.starttime = moment().format("HH:mm:ss");
     this.interval = setInterval(() => {
       if (this.timeLeft <= 60) {
         this.timeLeft++;
+        this.sZero()
+        
 
         if (this.timeLeft == 60) {
           this.timeLeft = 0;
           this.timeLeftmm = this.timeLeftmm + 1
+     
 
           if (this.timeLeftmm == 60) {
             this.timeLeft == 0
             this.timeLeftmm = 0;
             this.timeLefthh = this.timeLefthh + 1
-            if (this.timeLefthh == 24) {
-              this.timeLeft = 0
-              this.timeLeftmm = 0
-              this.timeLefthh = 0
-            }
+           
+            // if (this.timeLefthh == 24) {
+            //   this.timeLeft = 0
+            //   this.timeLeftmm = 0
+            //   this.timeLefthh = 0
+            // }
           }
         }
       }
@@ -116,9 +142,9 @@ export class TimesheetComponent implements OnInit {
     this.a = this.timeLeft;
     this.b = this.timeLeftmm
     this.c = this.timeLefthh;
-    this.timeLefthh = 0;
-    this.timeLeft = 0;
-    this.timeLeftmm = 0;
+    this.timeLefthh = "00";
+    this.timeLeft = "00";
+    this.timeLeftmm = "00";
 
     clearInterval(this.interval);
     this.time = 'You Worked For :' + this.c + ':' + this.b + ':' + this.a + ' Hours'
@@ -126,9 +152,9 @@ export class TimesheetComponent implements OnInit {
       pEmail: this.email,
       pStartTime: this.starttime,
       pEndTime: this.endtime,
-      PSessionTime:this.totaltime
+      PSessionTime: this.totaltime
     });
-  
+
     this.pForm()
     this.addTask()
     this.tasks()
@@ -157,27 +183,27 @@ export class TimesheetComponent implements OnInit {
     PSessionTime: new FormControl(this.totaltime)
   })
 
-  addTask(){
+  addTask() {
     this._taskService.task(JSON.stringify(this.projectForm.value))
-    .subscribe(
-      data=> console.log(data),
-      error=> console.log(error)
-    )
+      .subscribe(
+        data => console.log(data),
+        error => console.log(error)
+      )
   }
 
   pForm() {
-    
+
     console.log(JSON.stringify(this.projectForm.value))
-   
+
   }
 
   //Fun for Subscribe Task
-  tasks(){
+  tasks() {
     this._user.tasks(JSON.stringify(this.projectForm.value))
-    .subscribe(
-      data=> console.log(data),
-      error=>console.log(error)
-    )
+      .subscribe(
+        data => console.log(data),
+        error => console.log(error)
+      )
   }
 
 
