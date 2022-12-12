@@ -24,7 +24,7 @@
     "@angular/router": "~9.0.3",
     "@ng-bootstrap/ng-bootstrap": "^6.0.2",
     "bootstrap": "^4.4.1",
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "font-awesome": "^4.7.0",
     "moment": "^2.24.0",
     "rxjs": "~6.5.4",
